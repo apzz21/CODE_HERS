@@ -129,6 +129,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+<<<<<<< HEAD
   ffi:
     dependency: transitive
     description:
@@ -145,6 +146,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+=======
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   file_selector_linux:
     dependency: transitive
     description:
@@ -228,10 +231,17 @@ packages:
     dependency: "direct main"
     description:
       name: geolocator
+<<<<<<< HEAD
       sha256: "5c23f3613f50586c0bbb2b8f970240ae66b3bd992088cf60dd5ee2e6f7dde3a8"
       url: "https://pub.dev"
     source: hosted
     version: "9.0.2"
+=======
+      sha256: d2ec66329cab29cb297d51d96c067d457ca519dca8589665fa0b82ebacb7dbe4
+      url: "https://pub.dev"
+    source: hosted
+    version: "13.0.2"
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   geolocator_android:
     dependency: transitive
     description:
@@ -260,18 +270,32 @@ packages:
     dependency: transitive
     description:
       name: geolocator_web
+<<<<<<< HEAD
       sha256: "102e7da05b48ca6bf0a5bda0010f886b171d1a08059f01bfe02addd0175ebece"
       url: "https://pub.dev"
     source: hosted
     version: "2.2.1"
+=======
+      sha256: "2ed69328e05cd94e7eb48bb0535f5fc0c0c44d1c4fa1e9737267484d05c29b5e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.1"
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   geolocator_windows:
     dependency: transitive
     description:
       name: geolocator_windows
+<<<<<<< HEAD
       sha256: "4f4218f122a6978d0ad655fa3541eea74c67417440b09f0657238810d5af6bdc"
       url: "https://pub.dev"
     source: hosted
     version: "0.1.3"
+=======
+      sha256: "53da08937d07c24b0d9952eb57a3b474e29aae2abf9dd717f7e1230995f13f0e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3"
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   http:
     dependency: "direct main"
     description:
@@ -352,6 +376,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+<<<<<<< HEAD
   js:
     dependency: transitive
     description:
@@ -360,6 +385,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+=======
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   leak_tracker:
     dependency: transitive
     description:
@@ -496,6 +523,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
+<<<<<<< HEAD
   platform:
     dependency: transitive
     description:
@@ -504,6 +532,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.6"
+=======
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -565,6 +595,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+<<<<<<< HEAD
   synchronized:
     dependency: transitive
     description:
@@ -573,6 +604,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0+3"
+=======
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   term_glyph:
     dependency: transitive
     description:

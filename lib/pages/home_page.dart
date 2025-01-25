@@ -5,6 +5,8 @@ import 'package:CODE_HERS/pages/fundraiser.dart';
 import 'package:CODE_HERS/pages/strayanimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:pet_haven/pages/adoption.dart';
+import 'package:pet_haven/pages/caretaker.dart';
 
 import 'demo_page.dart';
 
@@ -72,6 +74,7 @@ class _DashboardPageState extends State<DashboardPage> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -223,7 +226,7 @@ class Tile extends StatelessWidget {
             'lib/assets/Activity_catalogue.png',
             () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DemoPage()),
+                  MaterialPageRoute(builder: (context) => CaretakerScreen()),
                 ));
       case 2:
         return _buildTile(
@@ -243,11 +246,15 @@ class Tile extends StatelessWidget {
                 ));
       case 4:
         return _buildTile(
+<<<<<<< HEAD
             'Adopto',
+=======
+            'Adoption',
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
             'lib/assets/Tracked_activity_list.png',
             () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DemoPage()),
+                  MaterialPageRoute(builder: (context) => AnimalAdoptionApp()),
                 ));
       case 5:
         return _buildTile(
