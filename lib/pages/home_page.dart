@@ -1,9 +1,17 @@
 import 'dart:async';
 
+import 'package:CODE_HERS/pages/bloodbank.dart';
+import 'package:CODE_HERS/pages/fundraiser.dart';
+import 'package:CODE_HERS/pages/strayanimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+<<<<<<< HEAD
 import 'package:pet_haven/pages/caretaker.dart';
 import 'package:pet_haven/pages/user_settings_page.dart';
+=======
+import 'package:pet_haven/pages/adoption.dart';
+import 'package:pet_haven/pages/caretaker.dart';
+>>>>>>> 7d6f33dd8f496ad81d51425374b37145908fa7a2
 
 import 'demo_page.dart';
 
@@ -63,6 +71,7 @@ class _DashboardPageState extends State<DashboardPage> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -90,7 +99,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   gradient: LinearGradient(
                     colors: [
                       gradientColors[_currentIndex],
-                      gradientColors[(_currentIndex + 1) % gradientColors.length],
+                      gradientColors[
+                          (_currentIndex + 1) % gradientColors.length],
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -217,6 +227,7 @@ class Tile extends StatelessWidget {
 
     switch (index) {
       case 0:
+<<<<<<< HEAD
         return _buildTile('Profile and edits', 'lib/assets/Profile_and_edits.png',
             () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserSettingsPage())), width);
       case 1:
@@ -234,6 +245,59 @@ class Tile extends StatelessWidget {
       case 5:
         return _buildTile('Stray Animal Posting', 'lib/assets/stray_animal_post.png',
             () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DemoPage())), width);
+=======
+        return _buildTile(
+            'Profile and edits',
+            'lib/assets/Activity_catalogue.png',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DemoPage()),
+                ));
+      case 1:
+        return _buildTile(
+            'Fetch Mate',
+            'lib/assets/Activity_catalogue.png',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CaretakerScreen()),
+                ));
+      case 2:
+        return _buildTile(
+            'Blood Bank',
+            'lib/assets/Activity_catalogue.png',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BloodBankPage()),
+                ));
+      case 3:
+        return _buildTile(
+            'Fund Raiser',
+            'lib/assets/Upload_certificate.png',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FundraiserPage()),
+                ));
+      case 4:
+        return _buildTile(
+<<<<<<< HEAD
+            'Adopto',
+=======
+            'Adoption',
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
+            'lib/assets/Tracked_activity_list.png',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AnimalAdoptionApp()),
+                ));
+      case 5:
+        return _buildTile(
+            'Stray Animal Posting',
+            'lib/assets/Earn_your_points.png',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => StrayAnimalPage()),
+                ));
+>>>>>>> 7d6f33dd8f496ad81d51425374b37145908fa7a2
       default:
         return Container();
     }
@@ -258,6 +322,7 @@ class Tile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+<<<<<<< HEAD
             Flexible(
               child: SizedBox(
                 width: width * 0.2,
@@ -281,6 +346,19 @@ class Tile extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
+=======
+            SizedBox(
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.contain,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(title,
+                textAlign: TextAlign.center,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+>>>>>>> 7d6f33dd8f496ad81d51425374b37145908fa7a2
           ],
         ),
       ),

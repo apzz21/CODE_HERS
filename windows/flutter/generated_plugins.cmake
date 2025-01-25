@@ -3,6 +3,10 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+<<<<<<< HEAD
+  audioplayers_windows
+=======
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
   file_selector_windows
   geolocator_windows
 )

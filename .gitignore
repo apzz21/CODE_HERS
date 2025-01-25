@@ -32,6 +32,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+pubspec.yaml
 
 # Symbolication related
 app.*.symbols
@@ -45,3 +46,7 @@ app.*.map.json
 /android/app/release
 
 pubspec.yaml
+<<<<<<< HEAD
+
+=======
+>>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
