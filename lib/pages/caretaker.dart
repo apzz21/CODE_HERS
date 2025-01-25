@@ -1,13 +1,7 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-class HomeScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    throw UnimplementedError();
-  }
-}
 
 class CaretakerScreen extends StatefulWidget {
   @override
@@ -38,24 +32,47 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
       });
     }
   }
+void _selectDateRange(BuildContext context) async {
+  final DateTimeRange? picked = await showDateRangePicker(
+    context: context,
+    firstDate: DateTime.now(),
+    lastDate: DateTime.now().add(Duration(days: 365)),
+    initialDateRange: _startDate != null && _endDate != null
+        ? DateTimeRange(start: _startDate!, end: _endDate!)
+        : null,
+    builder: (context, child) {
+      return Theme(
+        data: ThemeData.light().copyWith(
+          primaryColor: Colors.pink[900],
+          colorScheme: ColorScheme.light(
+            primary: Colors.pink[900]!,
+            onPrimary: Colors.white,
+            surface: Colors.pink[50]!,
+            onSurface: Colors.pink[700]!, // Light magenta for unselected dates
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.pink[900], // Button text color
+            ),
+          ),
+          datePickerTheme: DatePickerThemeData(
+            // ignore: deprecated_member_use
+            headerForegroundColor: Colors.pink[900], // Header text
+          ),
+        ),
+        child: child!,
+      );
+    },
+  );
 
-  void _selectDateRange(BuildContext context) async {
-    final DateTimeRange? picked = await showDateRangePicker(
-      context: context,
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365)),
-      initialDateRange: _startDate != null && _endDate != null
-          ? DateTimeRange(start: _startDate!, end: _endDate!)
-          : null,
-    );
-
-    if (picked != null) {
-      setState(() {
-        _startDate = picked.start;
-        _endDate = picked.end;
-      });
-    }
+  if (picked != null) {
+    setState(() {
+      _startDate = picked.start;
+      _endDate = picked.end;
+    });
   }
+}
+
 
   void _submitRequest() {
     if (_formKey.currentState!.validate()) {
@@ -118,31 +135,39 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('FetchMate'),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // FetchMate Description in a Container
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: Text(
+                'FetchMate',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.pink[900],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue[50],
+                color: Colors.pink[50],
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                'FetchMate connects pet owners with trusted caregivers for reliable, short-term pet care. ',
-                style: TextStyle(fontSize: 16),
+                'FetchMate connects pet owners with trusted caregivers for reliable, short-term pet care.',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.justify,
               ),
             ),
             SizedBox(height: 16),
-
-            // Form Fields
             Form(
               key: _formKey,
               child: Column(
@@ -152,6 +177,10 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                     controller: _petTypeController,
                     decoration: InputDecoration(
                       labelText: 'Pet Type',
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
@@ -166,6 +195,10 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                     controller: _petNameController,
                     decoration: InputDecoration(
                       labelText: 'Pet Name',
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
@@ -180,6 +213,10 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                     controller: _ownerNameController,
                     decoration: InputDecoration(
                       labelText: 'Your Name',
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
@@ -195,6 +232,10 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
@@ -212,6 +253,10 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                     controller: _addressController,
                     decoration: InputDecoration(
                       labelText: 'Address',
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                       border: OutlineInputBorder(),
                     ),
                     maxLines: 3,
@@ -225,12 +270,20 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                   SizedBox(height: 16),
                   OutlinedButton(
                     onPressed: () => _selectDateRange(context),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.pink[900],
+                      side: BorderSide(color: Colors.pink[900]!),
+                    ),
                     child: Text(
                       _startDate == null || _endDate == null
                           ? 'Select Care Duration'
                           : '${_startDate!.toLocal()}'.split(' ')[0] +
                               ' to ' +
                               '${_endDate!.toLocal()}'.split(' ')[0],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                     ),
                   ),
                   SizedBox(height: 16),
@@ -238,24 +291,35 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                     controller: _descriptionController,
                     decoration: InputDecoration(
                       labelText: 'Special Care Instructions',
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                       border: OutlineInputBorder(),
                       hintText: 'Dietary needs, medications, etc.',
                     ),
                     maxLines: 3,
                   ),
                   SizedBox(height: 16),
-
-                  // Image Upload Section
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Upload Pet Image:',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.pink[900],
+                        ),
                       ),
                       SizedBox(height: 10),
                       _petImage == null
-                          ? Text('No image selected.')
+                          ? Text(
+                              'No image selected.',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
                           : Container(
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
@@ -272,7 +336,6 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Image Post Container like Instagram
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
                                     child: Image.file(
@@ -303,8 +366,15 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                       SizedBox(height: 10),
                       ElevatedButton.icon(
                         onPressed: _pickPetImage,
-                        icon: Icon(Icons.upload),
+                        icon: Icon(
+                          Icons.upload,
+                          color: Colors.white,
+                        ),
                         label: Text('Upload Image'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.pink[900],
+                          foregroundColor: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -312,12 +382,16 @@ class _CaretakerScreenState extends State<CaretakerScreen> {
                   ElevatedButton(
                     onPressed: _submitRequest,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.pink[900],
                       padding: EdgeInsets.symmetric(vertical: 16),
                     ),
                     child: Text(
                       'Find a Pet Caretaker',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        foreground: Paint()..color = Colors.white,
+                      ),
                     ),
                   ),
                 ],

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Activity Point Tracker',
+      title: 'pet_heven',
       
       initialRoute: '/', // Set the initial route to login page
       routes: {

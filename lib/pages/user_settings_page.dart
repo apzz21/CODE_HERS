@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart'; // Add this dependency for picking images
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserSettingsPage extends StatefulWidget {
   @override
@@ -32,15 +33,23 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("User Settings"),
-        centerTitle: true,
-      ),
+      backgroundColor: const Color.fromARGB(255, 255, 247, 241), // Skin color
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 30),
+            const Text(
+              "User Settings",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 20),
+
             // User picture and details section
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,82 +57,106 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                 GestureDetector(
                   onTap: () => pickUserImage(),
                   child: CircleAvatar(
-                    radius: 40,
+                    radius: 50,
+                    backgroundColor: Colors.black,
                     backgroundImage: userProfileImage != null
                         ? FileImage(userProfileImage!)
                         : null,
                     child: userProfileImage == null
-                        ? Icon(Icons.person, size: 40, color: Colors.white)
+                        ? const Icon(Icons.person, size: 50, color: Colors.white)
                         : null,
                   ),
                 ),
-                SizedBox(width: 20),
-                Text(
+                const SizedBox(width: 20),
+                const Text(
                   "User Details",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             buildTextField("Username", usernameController),
             buildTextField("Email", emailController),
             buildTextField("Phone Number", phoneController,
                 keyboardType: TextInputType.phone),
             buildTextField("Address", addressController),
 
-            SizedBox(height: 20),
-            Divider(),
-            SizedBox(height: 20),
+            const SizedBox(height: 30),
 
             // Pet details section
-            Text(
-              "Pet Details",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            const Row(
+              children: [
+                Icon(Icons.pets, size: 30, color: Colors.black),
+                SizedBox(width: 10),
+                Text(
+                  "Pet Details",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             ...pets.map((pet) => buildPetCard(pet)).toList(),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
 
             // Add new pet section
-            Text(
+            const Text(
               "Add a Pet",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             buildTextField("Pet Name", petNameController),
             buildTextField("Type (e.g., Dog, Cat)", petTypeController),
             buildTextField("Breed", petBreedController),
             buildTextField("Age (Optional)", petAgeController,
                 keyboardType: TextInputType.number),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: () => pickPetImage(),
               child: Container(
                 width: double.infinity,
                 height: 150,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
+                  color: const Color.fromARGB(255, 111, 95, 95),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: petImage != null
-                    ? Image.file(petImage!, fit: BoxFit.cover)
-                    : Center(
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.file(petImage!, fit: BoxFit.cover),
+                      )
+                    : const Center(
                         child: Text(
                           "Tap to add pet image",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: addPet,
-              icon: Icon(Icons.add),
-              label: Text("Add Pet"),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+              icon: const Icon(Icons.add, color: Colors.white),
+              label: const Text("Add Pet", style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 81, 61, 61), // Pastel pink
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              ),
             ),
-
-            SizedBox(height: 20),
           ],
         ),
       ),
@@ -133,35 +166,56 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
   Widget buildTextField(String label, TextEditingController controller,
       {TextInputType keyboardType = TextInputType.text}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: TextField(
         controller: controller,
         keyboardType: keyboardType,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          labelStyle: const TextStyle(color: Color.fromARGB(255, 66, 66, 66)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(color: Colors.black),
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          filled: true,
+          fillColor: const Color.fromARGB(255, 255, 255, 255),
         ),
+        style: const TextStyle(color: Color.fromARGB(255, 156, 156, 156)),
       ),
     );
   }
 
   Widget buildPetCard(Map<String, dynamic> pet) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      elevation: 4,
+      color: const Color.fromARGB(255, 67, 64, 64), // Pastel dark pink
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+      ),
       child: ListTile(
         leading: pet['image'] != null
             ? CircleAvatar(
                 backgroundImage: FileImage(pet['image']),
-                radius: 25,
+                radius: 30,
               )
-            : Icon(Icons.pets, color: Colors.teal),
-        title: Text(pet['name'] ?? ''),
+            : const Icon(Icons.pets, color: Colors.white),
+        title: Text(
+          pet['name'] ?? '',
+          style: const TextStyle(color: Color.fromARGB(255, 70, 42, 42)),
+        ),
         subtitle: Text(
           "Type: ${pet['type']}\nBreed: ${pet['breed']}${pet['age'] != null && pet['age']!.isNotEmpty ? "\nAge: ${pet['age']}" : ""}",
+          style: const TextStyle(color: Colors.white),
         ),
         trailing: IconButton(
-          icon: Icon(Icons.delete, color: Colors.red),
+          icon: const Icon(Icons.delete, color: Colors.white),
           onPressed: () => removePet(pet),
         ),
         isThreeLine: true,
@@ -196,8 +250,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
         petTypeController.text.isEmpty ||
         petBreedController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text("Please fill in all required fields for the pet!")),
+        const SnackBar(content: Text("Please fill in all required fields for the pet!")),
       );
       return;
     }
