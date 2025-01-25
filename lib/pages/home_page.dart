@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:CODE_HERS/pages/bloodbank.dart';
+import 'package:CODE_HERS/pages/fundraiser.dart';
+import 'package:CODE_HERS/pages/strayanimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -24,15 +27,15 @@ class _DashboardPageState extends State<DashboardPage> {
     },
     {
       "fact": "Parrots can live for over 50 years!",
-      "image": "lib/assets/bird_line_illustration.png",
+      "image": "lib/assets/cat_line_illustration.png",
     },
     {
       "fact": "Goldfish have a memory span of months.",
-      "image": "lib/assets/fish_line_illustration.png",
+      "image": "lib/assets/cat_line_illustration.png",
     },
     {
       "fact": "Dolphins have unique names for each other.",
-      "image": "lib/assets/dolphin_line_illustration.png",
+      "image": "lib/assets/cat_line_illustration.png",
     },
   ];
 
@@ -87,7 +90,7 @@ class _DashboardPageState extends State<DashboardPage> {
             children: [
               Container(
                 width: double.infinity,
-                height: 300,
+                height: height * 0.4,
                 padding: EdgeInsets.symmetric(
                   vertical: height * 0.04,
                   horizontal: width * 0.05,
@@ -96,7 +99,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   gradient: LinearGradient(
                     colors: [
                       gradientColors[_currentIndex],
-                      gradientColors[(_currentIndex + 1) % gradientColors.length],
+                      gradientColors[
+                          (_currentIndex + 1) % gradientColors.length],
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -106,10 +110,12 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      petFacts[_currentIndex]["image"]!,
-                      height: 120,
-                      fit: BoxFit.contain,
+                    SizedBox(
+                      height: height * 0.2,
+                      child: Image.asset(
+                        petFacts[_currentIndex]["image"]!,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -182,8 +188,8 @@ class _DashboardPageState extends State<DashboardPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.chat_bubble_outline),
+            label: 'ChatAI',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -204,40 +210,52 @@ class Tile extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        return _buildTile('Profile and edits', 'lib/assets/Activity_catalogue.png',
+        return _buildTile(
+            'Profile and edits',
+            'lib/assets/Activity_catalogue.png',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DemoPage()),
                 ));
       case 1:
-        return _buildTile('Fetch Mate', 'lib/assets/Activity_catalogue.png',
+        return _buildTile(
+            'Fetch Mate',
+            'lib/assets/Activity_catalogue.png',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DemoPage()),
                 ));
       case 2:
-        return _buildTile('Blood Bank', 'lib/assets/Activity_catalogue.png',
+        return _buildTile(
+            'Blood Bank',
+            'lib/assets/Activity_catalogue.png',
             () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DemoPage()),
+                  MaterialPageRoute(builder: (context) => BloodBankPage()),
                 ));
       case 3:
-        return _buildTile('Fund Raiser', 'lib/assets/Upload_certificate.png',
+        return _buildTile(
+            'Fund Raiser',
+            'lib/assets/Upload_certificate.png',
             () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const DemoPage()),
+                  MaterialPageRoute(builder: (context) => FundraiserPage()),
                 ));
       case 4:
-        return _buildTile('Adopto', 'lib/assets/Tracked_activity_list.png',
+        return _buildTile(
+            'Adopto',
+            'lib/assets/Tracked_activity_list.png',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DemoPage()),
                 ));
       case 5:
-        return _buildTile('Stray Animal Posting', 'lib/assets/Earn_your_points.png',
+        return _buildTile(
+            'Stray Animal Posting',
+            'lib/assets/Earn_your_points.png',
             () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const DemoPage()),
+                  MaterialPageRoute(builder: (context) => StrayAnimalPage()),
                 ));
       default:
         return Container();
@@ -263,9 +281,17 @@ class Tile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(imagePath, height: 90, fit: BoxFit.contain),
+            SizedBox(
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.contain,
+              ),
+            ),
             const SizedBox(height: 12),
-            Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+            Text(title,
+                textAlign: TextAlign.center,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
