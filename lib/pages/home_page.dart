@@ -24,15 +24,15 @@ class _DashboardPageState extends State<DashboardPage> {
     },
     {
       "fact": "Parrots can live for over 50 years!",
-      "image": "lib/assets/bird_line_illustration.png",
+      "image": "lib/assets/cat_line_illustration.png",
     },
     {
       "fact": "Goldfish have a memory span of months.",
-      "image": "lib/assets/fish_line_illustration.png",
+      "image": "lib/assets/cat_line_illustration.png",
     },
     {
       "fact": "Dolphins have unique names for each other.",
-      "image": "lib/assets/dolphin_line_illustration.png",
+      "image": "lib/assets/cat_line_illustration.png",
     },
   ];
 
@@ -87,7 +87,7 @@ class _DashboardPageState extends State<DashboardPage> {
             children: [
               Container(
                 width: double.infinity,
-                height: 300,
+                height: height * 0.4,
                 padding: EdgeInsets.symmetric(
                   vertical: height * 0.04,
                   horizontal: width * 0.05,
@@ -106,10 +106,12 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      petFacts[_currentIndex]["image"]!,
-                      height: 120,
-                      fit: BoxFit.contain,
+                    SizedBox(
+                      height: height * 0.2,
+                      child: Image.asset(
+                        petFacts[_currentIndex]["image"]!,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -182,8 +184,8 @@ class _DashboardPageState extends State<DashboardPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.chat_bubble_outline),
+            label: 'ChatAI',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -263,7 +265,13 @@ class Tile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(imagePath, height: 90, fit: BoxFit.contain),
+            SizedBox(
+              
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.contain,
+              ),
+            ),
             const SizedBox(height: 12),
             Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
           ],

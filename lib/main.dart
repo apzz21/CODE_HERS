@@ -1,14 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:pet_haven/pages/home_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
-  get set => null;
+
+  get set=>null;
 
   @override
   Widget build(BuildContext context) {

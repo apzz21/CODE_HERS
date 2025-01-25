@@ -37,6 +37,12 @@ dependencies:
   http: ^1.2.2
   xml: ^6.5.0
   flutter_staggered_grid_view: ^0.7.0
+  # audioplayers: ^5.2.0
+  provider: ^6.0.5
+  geolocator: ^13.0.2
+  image_picker: ^1.0.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -61,14 +67,16 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-    - lib/assets/Profile_and_edits.png
-    - lib/assets/Activity_catalogue.png
-    - lib/assets/Certificate_list.png
-    - lib/assets/Tracked_activity_list.png
-    - lib/assets/Upload_certificate.png
-    - lib/assets/Earn_your_points.png
-    - lib/assets/suggestion_id.png
+  assets:
+      - lib/assets/Profile_and_edits.png
+      - lib/assets/Activity_catalogue.png
+      - lib/assets/Certificate_list.png
+      - lib/assets/Tracked_activity_list.png
+      - lib/assets/Upload_certificate.png
+      - lib/assets/Earn_your_points.png
+      - lib/assets/suggestion_id.png
+      - lib/assets/dog_line_illustration.png
+      - lib/assets/cat_line_illustration.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -96,3 +104,7 @@ assets:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+
+
+#hellooooo
