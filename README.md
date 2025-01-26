@@ -83,8 +83,8 @@ For Software:
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+[https://drive.google.com/file/d/1c0HCUBE14kIsY3OzeiJu_9Wpd8mcGHTY/view?usp=drivesdk]
+# The video demonstrates the working and features of the app
 
 ## Team Contributions
 - [Adelyn T Kishore]: [Fetch mate, adoption]
