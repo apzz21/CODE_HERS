@@ -44,37 +44,37 @@ For Software:
 # Screenshots (Add at least 3)
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/Homepage-1.jpeg)
-*This is the welcome page prompting users to either login or register*
+# This is the welcome page prompting users to either login or register
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/Dashboard-2.jpeg)
-*This is the homepage consisting of features-fundraiser,adopto,bloodbank,stray animal posting,fetchmate,chatpal and settings*
+# This is the homepage consisting of features-fundraiser,adopto,bloodbank,stray animal posting,fetchmate,chatpal and settings
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/Profile-3.jpeg)
-*Userprofile page to add pet details*
+# Userprofile page to add pet details
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/Fundraiser-4.jpeg)
-*Fundraiser feature to either raise a fund or donate to existing funds*
+# Fundraiser feature to either raise a fund or donate to existing funds
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/Adopto-5.1.jpeg)
-*Adopto feature that shows adopting options*
+# Adopto feature that shows adopting options
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/Adopto-5.2.jpeg)
-*Adopto feature that shows giving for adoption*
+# Adopto feature that shows giving for adoption
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/bloodbank-6.jpeg)
-*Bloodbank feature to find nearby donors*
+# Bloodbank feature to find nearby donors
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/straylocation-7.jpeg)
-*Stray animals posting that shows locations with stray animals*
+# Stray animals posting that shows locations with stray animals
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/fetchmate-8.1.jpeg)
-*Fetchmate feature that shows posting feature*
+# Fetchmate feature that shows posting feature
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/fetchmate-8.2.jpeg)
-*Fetchmate feature that shows fetching option*
+# Fetchmate feature that shows fetching option
 
 ![](https://github.com/apzz21/CODE_HERS/blob/master/chatpal-9.jpeg)
-*Chatpal feature that is a chatbot assisstant to solve our queries*
+# Chatpal feature that is a chatbot assisstant to solve our queries
 
 
 # Diagrams
