@@ -78,8 +78,8 @@ For Software:
 
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+![](blob:https://web.whatsapp.com/9594fd19-9a0f-4d40-9697-66667c15612d)
+
 
 ### Project Demo
 # Video
