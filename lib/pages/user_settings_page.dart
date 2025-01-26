@@ -58,7 +58,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                   onTap: () => pickUserImage(),
                   child: CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.black,
+                    backgroundColor: const Color.fromARGB(255, 111, 95, 95),
                     backgroundImage: userProfileImage != null
                         ? FileImage(userProfileImage!)
                         : null,
@@ -90,7 +90,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
             // Pet details section
             const Row(
               children: [
-                Icon(Icons.pets, size: 30, color: Colors.black),
+                Icon(Icons.pets, size: 30, color:Color.fromARGB(255, 111, 95, 95)),
                 SizedBox(width: 10),
                 Text(
                   "Pet Details",

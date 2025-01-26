@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FundraiserPage extends StatefulWidget {
@@ -8,13 +9,12 @@ class FundraiserPage extends StatefulWidget {
 }
 
 class _FundraiserPageState extends State<FundraiserPage> {
-  // Preloaded dummy fundraisers
   List<Map<String, dynamic>> fundraisers = [
     {
       'name': 'Tommy',
       'description': 'Tommy needs surgery after a car accident.',
       'amount': '5000',
-      'image': null, // Placeholder for no image
+      'image': null,
     },
     {
       'name': 'Bella',
@@ -30,38 +30,30 @@ class _FundraiserPageState extends State<FundraiserPage> {
     },
   ];
 
-  // Controllers for posting a new fundraiser
   final TextEditingController petNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController amountNeededController = TextEditingController();
-
-  // Image for fundraiser
-  File? fundraiserImage;
-
-  // Donation amount controller
   final TextEditingController donationController = TextEditingController();
+
+  File? fundraiserImage;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Fundraiser"),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        foregroundColor: Color(0xFF76D6FF),
-      ),
+  
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Section to Post a New Fundraiser
+            const SizedBox(height: 40),
             Text(
               "Post a Fundraiser",
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF76D6FF)),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF76D6FF),
+              ),
             ),
             SizedBox(height: 10),
             buildTextField("Pet Name", petNameController),
@@ -97,21 +89,20 @@ class _FundraiserPageState extends State<FundraiserPage> {
               icon: Icon(Icons.add, color: Colors.white),
               label: Text("Post Fundraiser"),
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF76D6FF),
-                  foregroundColor: Colors.white),
+                backgroundColor: Color(0xFF76D6FF),
+                foregroundColor: Colors.white,
+              ),
             ),
-
             SizedBox(height: 20),
             Divider(color: Color(0xFF76D6FF)),
             SizedBox(height: 20),
-
-            // Section to View Available Fundraisers
             Text(
               "Available Fundraisers",
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF76D6FF)),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF76D6FF),
+              ),
             ),
             SizedBox(height: 10),
             ListView.builder(
@@ -209,7 +200,6 @@ class _FundraiserPageState extends State<FundraiserPage> {
       });
     });
 
-    // Clear input fields and image
     petNameController.clear();
     descriptionController.clear();
     amountNeededController.clear();

@@ -1,19 +1,15 @@
 import 'dart:async';
 
-import 'package:CODE_HERS/pages/bloodbank.dart';
-import 'package:CODE_HERS/pages/fundraiser.dart';
-import 'package:CODE_HERS/pages/strayanimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-<<<<<<< HEAD
-import 'package:pet_haven/pages/caretaker.dart';
-import 'package:pet_haven/pages/user_settings_page.dart';
-=======
 import 'package:pet_haven/pages/adoption.dart';
+import 'package:pet_haven/pages/bloodbank.dart';
 import 'package:pet_haven/pages/caretaker.dart';
->>>>>>> 7d6f33dd8f496ad81d51425374b37145908fa7a2
-
-import 'demo_page.dart';
+import 'package:pet_haven/pages/fundraiser.dart';
+import 'package:pet_haven/pages/gen_ai.dart';
+import 'package:pet_haven/pages/setting_page.dart';
+import 'package:pet_haven/pages/strayanimal.dart';
+import 'package:pet_haven/pages/user_settings_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -34,27 +30,36 @@ class _DashboardPageState extends State<DashboardPage> {
     },
     {
       "fact": "Parrots can live for over 50 years!",
-      "image": "lib/assets/cat_line_illustration.png",
-    }
+      "image": "lib/assets/parrot.png",
+    },
+    {
+      "fact": "Goldfish have a memory span of months.",
+      "image": "lib/assets/golden_fish.png",
+    },
+    {
+      "fact": "Dolphins have unique names for each other.",
+      "image": "lib/assets/dolphi.png",
+    },
   ];
 
   final List<Color> gradientColors = [
     const Color.fromARGB(255, 141, 204, 238),
     const Color.fromARGB(255, 238, 174, 206),
     const Color.fromARGB(255, 229, 202, 159),
-    const Color.fromARGB(255, 143, 233, 215),
-    const Color.fromARGB(255, 224, 147, 175),
+    const Color.fromARGB(255, 224, 162, 243),
+    const Color.fromARGB(255, 227, 162, 192),
   ];
 
-  int _currentIndex = 0;
+  int _currentPetFactIndex = 0;  // Index for pet facts
+  int _bottomNavBarIndex = 0;    // Index for BottomNavigationBar
   late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
       setState(() {
-        _currentIndex = (_currentIndex + 1) % petFacts.length;
+        _currentPetFactIndex = (_currentPetFactIndex + 1) % petFacts.length;
       });
     });
   }
@@ -71,17 +76,17 @@ class _DashboardPageState extends State<DashboardPage> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         elevation: 0,
+        title: Text('Pet Haven', style: TextStyle(color: Colors.purple.shade100)),
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: width * 0.04),
-            child: const Icon(Icons.notifications_none, color: Colors.black),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: EdgeInsets.only(right: width * 0.045),
+        //     child: const Icon(Icons.notifications_none, color: Colors.black),
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -90,17 +95,16 @@ class _DashboardPageState extends State<DashboardPage> {
             children: [
               Container(
                 width: double.infinity,
-                height: height * 0.4,
+                height: height * 0.5,
                 padding: EdgeInsets.symmetric(
-                  vertical: height * 0.04,
+                  vertical: height * 0.045,
                   horizontal: width * 0.05,
                 ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      gradientColors[_currentIndex],
-                      gradientColors[
-                          (_currentIndex + 1) % gradientColors.length],
+                      gradientColors[_currentPetFactIndex],
+                      gradientColors[(_currentPetFactIndex + 1) % gradientColors.length],
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -113,10 +117,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   children: [
                     Flexible(
                       child: SizedBox(
-                        width: width * 0.5,
-                        height: height * 0.2,
+                        width: width * 0.55,
+                        height: height * 0.25,
                         child: Image.asset(
-                          petFacts[_currentIndex]["image"]!,
+                          petFacts[_currentPetFactIndex]["image"]!,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return const Icon(
@@ -130,11 +134,11 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      petFacts[_currentIndex]["fact"]!,
+                      petFacts[_currentPetFactIndex]["fact"]!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -144,8 +148,8 @@ class _DashboardPageState extends State<DashboardPage> {
               const SizedBox(height: 16),
               StaggeredGrid.count(
                 crossAxisCount: 4,
-                mainAxisSpacing: width * 0.02,
-                crossAxisSpacing: width * 0.02,
+                mainAxisSpacing: width * 0.025,
+                crossAxisSpacing: width * 0.025,
                 children: const [
                   StaggeredGridTile.count(
                     crossAxisCellCount: 2,
@@ -184,17 +188,29 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: _bottomNavBarIndex,  // Use separate index for BottomNavigationBar
         selectedItemColor: const Color(0xFFF48FB1),
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            _bottomNavBarIndex = index;  // Update BottomNavigationBar index
           });
           if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DemoPage()),
+              MaterialPageRoute(builder: (context) => SettingPage()),
             );
+          } else if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  ChatPageG()),
+            );
+          }
+          else if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>   DashboardPage ()),
+            );
+            
           }
         },
         items: const [
@@ -227,7 +243,6 @@ class Tile extends StatelessWidget {
 
     switch (index) {
       case 0:
-<<<<<<< HEAD
         return _buildTile('Profile and edits', 'lib/assets/Profile_and_edits.png',
             () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserSettingsPage())), width);
       case 1:
@@ -235,69 +250,16 @@ class Tile extends StatelessWidget {
             () => Navigator.push(context, MaterialPageRoute(builder: (context) => CaretakerScreen())), width);
       case 2:
         return _buildTile('Blood Bank', 'lib/assets/blood_bank.png',
-            () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DemoPage())), width);
+            () => Navigator.push(context, MaterialPageRoute(builder: (context) => BloodBankPage())), width);
       case 3:
         return _buildTile('Fund Raiser', 'lib/assets/fund_raiser.png',
-            () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DemoPage())), width);
+            () => Navigator.push(context, MaterialPageRoute(builder: (context) => FundraiserPage())), width);
       case 4:
         return _buildTile('Adopto', 'lib/assets/Adopto.png',
-            () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DemoPage())), width);
+            () => Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalAdoptionApp())), width);
       case 5:
         return _buildTile('Stray Animal Posting', 'lib/assets/stray_animal_post.png',
-            () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DemoPage())), width);
-=======
-        return _buildTile(
-            'Profile and edits',
-            'lib/assets/Activity_catalogue.png',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DemoPage()),
-                ));
-      case 1:
-        return _buildTile(
-            'Fetch Mate',
-            'lib/assets/Activity_catalogue.png',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CaretakerScreen()),
-                ));
-      case 2:
-        return _buildTile(
-            'Blood Bank',
-            'lib/assets/Activity_catalogue.png',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BloodBankPage()),
-                ));
-      case 3:
-        return _buildTile(
-            'Fund Raiser',
-            'lib/assets/Upload_certificate.png',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FundraiserPage()),
-                ));
-      case 4:
-        return _buildTile(
-<<<<<<< HEAD
-            'Adopto',
-=======
-            'Adoption',
->>>>>>> 81b1ac95a9117d92a77faa06b244c0b3801e2abc
-            'lib/assets/Tracked_activity_list.png',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AnimalAdoptionApp()),
-                ));
-      case 5:
-        return _buildTile(
-            'Stray Animal Posting',
-            'lib/assets/Earn_your_points.png',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => StrayAnimalPage()),
-                ));
->>>>>>> 7d6f33dd8f496ad81d51425374b37145908fa7a2
+            () => Navigator.push(context, MaterialPageRoute(builder: (context) => StrayAnimalPage())), width);
       default:
         return Container();
     }
@@ -307,12 +269,13 @@ class Tile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(15.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30.0),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.grey.withOpacity(0.5),
               blurRadius: 8,
               offset: const Offset(0, 3),
@@ -322,11 +285,10 @@ class Tile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-<<<<<<< HEAD
             Flexible(
               child: SizedBox(
-                width: width * 0.2,
-                height: width * 0.2,
+                width: width * 0.25,
+                height: width * 0.25,
                 child: Image.asset(
                   imagePath,
                   fit: BoxFit.cover,
@@ -346,19 +308,6 @@ class Tile extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
-=======
-            SizedBox(
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(title,
-                textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
->>>>>>> 7d6f33dd8f496ad81d51425374b37145908fa7a2
           ],
         ),
       ),

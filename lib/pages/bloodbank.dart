@@ -37,9 +37,15 @@ class _BloodBankPageState extends State<BloodBankPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFF7E0), // Nude yellow background
       appBar: AppBar(
-        title: Text("Animal Blood Bank"),
+        backgroundColor: Color.fromARGB(255, 252, 235, 181), // Light yellow AppBar
+        title: Text(
+          "",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -49,7 +55,7 @@ class _BloodBankPageState extends State<BloodBankPage> {
             // Section to Post Animal Details
             Text(
               "Post Animal Details",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             buildTextField("Animal Name", animalNameController),
@@ -60,9 +66,15 @@ class _BloodBankPageState extends State<BloodBankPage> {
             SizedBox(height: 10),
             ElevatedButton.icon(
               onPressed: postAnimalDetails,
-              icon: Icon(Icons.add),
+              icon: Icon(
+                Icons.add,
+                color: Colors.black,
+              ),
               label: Text("Post Details"),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFFFFD54F), // Light yellow
+                foregroundColor: Colors.black,
+              ),
             ),
 
             SizedBox(height: 20),
@@ -131,8 +143,8 @@ class _BloodBankPageState extends State<BloodBankPage> {
       elevation: 4,
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Colors.teal,
-          child: Icon(Icons.pets, color: Colors.white),
+          backgroundColor: Color(0xFFFFD54F), // Light yellow
+          child: Icon(Icons.pets, color: Colors.black),
         ),
         title: Text(animal['name'] ?? ''),
         subtitle: Text(
@@ -148,13 +160,13 @@ class _BloodBankPageState extends State<BloodBankPage> {
       margin: EdgeInsets.symmetric(vertical: 8.0),
       elevation: 4,
       child: ListTile(
-        leading: Icon(Icons.local_hospital, color: Colors.teal, size: 40),
+        leading: Icon(Icons.local_hospital, color: Color(0xFFFFD54F), size: 40),
         title: Text(hospital['name'] ?? ''),
         subtitle: Text(
           "${hospital['address']}\nAvailable Blood: ${hospital['availableBlood']}",
         ),
         isThreeLine: true,
-        trailing: Icon(Icons.arrow_forward, color: Colors.teal),
+        trailing: Icon(Icons.arrow_forward, color: Color(0xFFFFD54F)),
       ),
     );
   }

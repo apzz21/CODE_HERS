@@ -1,12 +1,13 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: AnimalAdoptionApp(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: AnimalAdoptionApp(),
+//   ));
+// }
 
 class AnimalAdoptionApp extends StatefulWidget {
   @override
@@ -70,8 +71,9 @@ class _AnimalAdoptionAppState extends State<AnimalAdoptionApp> {
         backgroundColor:
             Color(0xFFF8C8D8), // Light pastel pink background color
         appBar: AppBar(
-          title: Text('Animal Adoption'),
-          centerTitle: true,
+          title: Text('   \n  Adoption'),
+            automaticallyImplyLeading: false,
+          centerTitle: false,
           bottom: TabBar(
             tabs: [
               Tab(text: 'Adopt'),
@@ -308,7 +310,8 @@ class AnimalDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adoption Details'),
+        title: Text('\n Adoption Details'),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -377,7 +380,6 @@ class ForAdoptionScreen extends StatefulWidget {
 
 class _ForAdoptionScreenState extends State<ForAdoptionScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _animalType = '';
   String _animalName = '';
   String _address = '';
   String _phone = '';
@@ -414,7 +416,6 @@ class _ForAdoptionScreenState extends State<ForAdoptionScreen> {
       widget.onSubmit(newAnimal);
 
       setState(() {
-        _animalType = '';
         _animalName = '';
         _address = '';
         _phone = '';

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -71,85 +72,95 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Stray Animal Posting"),
+        backgroundColor: const Color(0xFFD9E4DD), // Light nude green
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        title: const Text(
+          "",
+          style: TextStyle(color: Colors.black),
+        ),
+        automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Section to Post Stray Animal Details
-            Text(
-              "Post Stray Animal",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            // TextField for User Name
-            buildTextField("Enter your name", nameController),
-            SizedBox(height: 10),
-            // Image Picker
-            GestureDetector(
-              onTap: () => pickStrayImage(),
-              child: MouseRegion(
-                onEnter: (_) => _animationController.forward(),
-                onExit: (_) => _animationController.reverse(),
-                child: AnimatedBuilder(
-                  animation: _animationController,
-                  builder: (context, child) {
-                    return Container(
-                      width: double.infinity,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: strayImage != null
-                          ? Image.file(strayImage!, fit: BoxFit.cover)
-                          : Center(
-                              child: Icon(
-                                Icons.pets,
-                                color: Colors.grey,
-                                size: 50,
+      body: Container(
+        color: const Color(0xFFF4F7F5), // Light nude green background
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Section to Post Stray Animal Details
+              const Text(
+                "Post Stray Animal",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 1, 63, 43)),
+              ),
+              const SizedBox(height: 10),
+              // TextField for User Name
+              buildTextField("Enter your name", nameController),
+              const SizedBox(height: 10),
+              // Image Picker
+              GestureDetector(
+                onTap: () => pickStrayImage(),
+                child: MouseRegion(
+                  onEnter: (_) => _animationController.forward(),
+                  onExit: (_) => _animationController.reverse(),
+                  child: AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) {
+                      return Container(
+                        width: double.infinity,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: strayImage != null
+                            ? Image.file(strayImage!, fit: BoxFit.cover)
+                            : const Center(
+                                child: Icon(
+                                  Icons.pets,
+                                  color: Colors.grey,
+                                  size: 50,
+                                ),
                               ),
-                            ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            buildTextField(
-                "Enter location where stray was found", locationController),
-            SizedBox(height: 10),
-            ElevatedButton.icon(
-              onPressed: postStrayAnimal,
-              icon: Icon(Icons.add),
-              label: Text("Post"),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-            ),
+              const SizedBox(height: 10),
+              buildTextField(
+                  "Enter location where stray was found", locationController),
+              const SizedBox(height: 10),
+              ElevatedButton.icon(
+                onPressed: postStrayAnimal,
+                icon: const Icon(Icons.add, color: Color(0xFFFFFFFF)),
+                label: const Text("Post"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.teal,
+                  foregroundColor: const Color(0xFFFFFFFF),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Divider(),
+              const SizedBox(height: 20),
 
-            SizedBox(height: 20),
-            Divider(),
-            SizedBox(height: 20),
-
-            // Section to View Posted Stray Animals
-            Text(
-              "Posted Stray Animals",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: strayAnimals.length,
-              itemBuilder: (context, index) {
-                final stray = strayAnimals[index];
-                return buildStrayAnimalCard(stray);
-              },
-            ),
-          ],
+              // Section to View Posted Stray Animals
+              const Text(
+                "Posted Stray Animals",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: strayAnimals.length,
+                itemBuilder: (context, index) {
+                  final stray = strayAnimals[index];
+                  return buildStrayAnimalCard(stray);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -162,7 +173,7 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
       ),
     );
@@ -170,13 +181,13 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
 
   Widget buildStrayAnimalCard(Map<String, dynamic> stray) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.all(12.0),
+        contentPadding: const EdgeInsets.all(12.0),
         leading: stray['image'] != null
             ? (stray['image'] is String
                 ? CircleAvatar(
@@ -189,10 +200,10 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
                         FileImage(stray['image']), // For local images
                     radius: 30,
                   ))
-            : Icon(Icons.pets, size: 40, color: Colors.teal),
+            : const Icon(Icons.pets, size: 40, color: Colors.teal),
         title: Text("Location: ${stray['location']}"),
         subtitle: Text("Posted by: ${stray['user']}"),
-        trailing: Icon(Icons.info_outline),
+        trailing: const Icon(Icons.info_outline),
         onTap: () => showDetailsDialog(stray),
       ),
     );
@@ -212,7 +223,7 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
   void postStrayAnimal() async {
     if (locationController.text.isEmpty || nameController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please add your name and location!")),
+        const SnackBar(content: Text("Please add your name and location!")),
       );
       return;
     }
@@ -235,7 +246,7 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Stray Animal Details"),
+        title: const Text("Stray Animal Details"),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -244,20 +255,20 @@ class _StrayAnimalPageState extends State<StrayAnimalPage>
                     ? Image.network(stray['image'],
                         height: 150, width: 150, fit: BoxFit.cover)
                     : Image.file(File(stray['image'])))
-                : Icon(Icons.pets, size: 50, color: Colors.teal),
-            SizedBox(height: 10),
+                : const Icon(Icons.pets, size: 50, color: Colors.teal),
+            const SizedBox(height: 10),
             Text("Location: ${stray['location']}"),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text("Posted by: ${stray['user']}"),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Close"),
+            child: const Text("Close"),
           ),
         ],
       ),
     );
   }
-}
+    }
